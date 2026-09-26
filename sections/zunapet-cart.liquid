@@ -1,0 +1,35 @@
+<section class="zp-page">
+  <div class="zp-wrap">
+    <h1>Tu carrito</h1>
+    {% if cart.item_count == 0 %}
+      <div class="zp-empty">
+        <h2>Tu carrito está vacío</h2>
+        <p>Descubre nuestro guante quitapelos reutilizable.</p>
+        <a class="zp-btn" href="/products/guante-quitapelos-reutilizable-zunapet">Ver producto</a>
+      </div>
+    {% else %}
+      <form action="{{ routes.cart_url }}" method="post">
+        <table class="zp-cart-table">
+          <thead><tr><th>Producto</th><th>Cantidad</th><th>Total</th></tr></thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr>
+                <td><a href="{{ item.url }}"><strong>{{ item.product.title }}</strong><br><span class="zp-mini">{{ item.variant.title }}</span></a></td>
+                <td><input class="zp-qty" style="max-width:90px" type="number" name="updates[]" value="{{ item.quantity }}" min="0"></td>
+                <td>{{ item.final_line_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="zp-cart-total">
+          <strong>Total: {{ cart.total_price | money }}</strong>
+          <button class="zp-btn" type="submit" name="update">Actualizar</button>
+          <button class="zp-btn" type="submit" name="checkout">Finalizar compra</button>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"Carrito Zunapet","settings":[]}
+{% endschema %}
