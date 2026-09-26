@@ -1,0 +1,128 @@
+{% assign featured = all_products[section.settings.product] %}
+<section class="zp-hero">
+  <div class="zp-hero-inner">
+    <span class="zp-kicker">🐾 Para hogares con perro, gato… o ambos</span>
+    <h1>Menos pelo.<br>Más momentos juntos.</h1>
+    <p>Soluciones prácticas para convivir con mascotas sin renunciar a una casa cuidada.</p>
+    <div class="zp-buttons">
+      <a class="zp-btn" href="/products/guante-quitapelos-reutilizable-zunapet">Descubrir el guante</a>
+      <a class="zp-btn zp-btn-secondary" href="#como-funciona">Cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<div class="zp-trust">
+  <div class="zp-wrap zp-trust-grid">
+    <div class="zp-trust-item"><div class="zp-trust-icon">🔒</div><div><strong>Pago seguro</strong><span>Procesado por Shopify Payments</span></div></div>
+    <div class="zp-trust-item"><div class="zp-trust-icon">📦</div><div><strong>Envío con seguimiento</strong><span>Recibirás el tracking cuando esté disponible</span></div></div>
+    <div class="zp-trust-item"><div class="zp-trust-icon">♻️</div><div><strong>Reutilizable</strong><span>Sin rollos adhesivos ni recambios</span></div></div>
+  </div>
+</div>
+
+<section class="zp-section">
+  <div class="zp-wrap zp-product-card">
+    <div class="zp-product-media">
+      {% if featured != blank and featured.featured_image %}
+        {{ featured.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', alt: featured.title }}
+      {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0987/1546/8104/files/S8c989b91c2f94484918ce18930900d61O.webp?v=1790422710" alt="Guante Quitapelos Reutilizable Zunapet">
+      {% endif %}
+    </div>
+    <div class="zp-product-copy">
+      <span class="zp-eyebrow">Nuestro imprescindible</span>
+      <h2>Guante Quitapelos Reutilizable Zunapet</h2>
+      <p class="zp-lead">Recoge pelo de perros y gatos de sofás, ropa, alfombras, mantas y asientos del coche de forma rápida y sencilla.</p>
+      <div class="zp-price-row">
+        <span class="zp-price">Desde 24,90 €</span>
+        <span class="zp-mini">Packs de 1, 2 y 3 unidades</span>
+      </div>
+      <ul class="zp-list">
+        <li>Úsalo una y otra vez sin comprar recambios.</li>
+        <li>No necesita batería ni electricidad.</li>
+        <li>Ligero, práctico y fácil de guardar.</li>
+        <li>Perfecto para casa, coche y textiles.</li>
+      </ul>
+      {% if featured != blank %}
+        {% form 'product', featured, class: 'zp-buybox' %}
+          <select name="id" class="zp-select" aria-label="Selecciona tu pack">
+            {% for variant in featured.variants %}
+              <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                {{ variant.title }} — {{ variant.price | money }}
+              </option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="zp-btn" {% unless featured.available %}disabled{% endunless %}>Añadir al carrito</button>
+        {% endform %}
+      {% else %}
+        <a class="zp-btn" href="/products/guante-quitapelos-reutilizable-zunapet">Ver packs y comprar</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="zp-section zp-section-soft" id="como-funciona">
+  <div class="zp-wrap">
+    <div class="zp-section-head">
+      <div class="zp-eyebrow">Simple de verdad</div>
+      <h2>Una rutina de limpieza más fácil</h2>
+      <p>Pensado para esos pelos que aparecen en el sofá, la ropa o el coche justo cuando menos apetece ponerse a limpiar.</p>
+    </div>
+    <div class="zp-features">
+      <article class="zp-feature"><div class="zp-feature-icon">🧤</div><h3>1. Pasa el guante</h3><p>Deslízalo sobre la superficie donde se acumula pelo y pelusa.</p></article>
+      <article class="zp-feature"><div class="zp-feature-icon">✨</div><h3>2. Recoge el pelo</h3><p>El guante ayuda a agrupar el pelo para retirarlo con menos esfuerzo.</p></article>
+      <article class="zp-feature"><div class="zp-feature-icon">🔁</div><h3>3. Vacía y reutiliza</h3><p>Retira el pelo acumulado y vuelve a usarlo cuando lo necesites.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="zp-section">
+  <div class="zp-wrap zp-story">
+    <div class="zp-story-badge">
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0987/1546/8104/files/zunapet-favicon.png?v=1790427395" alt="Símbolo Zunapet">
+        <h3>Hecho para convivir mejor</h3>
+        <p>Zunapet nace para reunir productos sencillos que resuelven pequeños problemas del día a día con mascotas.</p>
+      </div>
+    </div>
+    <div>
+      <span class="zp-eyebrow">Nuestra idea</span>
+      <h2>La casa es de todos. También de ellos.</h2>
+      <p>Nos gustan los productos que ahorran tiempo y encajan en la vida real: sin instalaciones raras, sin complicaciones y sin llenar el armario de recambios.</p>
+      <p>Empezamos con un básico para hogares con perros y gatos: un guante reutilizable para retirar pelo de las superficies donde más se acumula.</p>
+      <a class="zp-btn" href="/products/guante-quitapelos-reutilizable-zunapet">Conocer el producto</a>
+    </div>
+  </div>
+</section>
+
+<section class="zp-section zp-section-soft">
+  <div class="zp-wrap">
+    <div class="zp-section-head">
+      <div class="zp-eyebrow">Preguntas frecuentes</div>
+      <h2>Lo esencial, antes de comprar</h2>
+    </div>
+    <div class="zp-faq">
+      <details><summary>¿En qué superficies puedo usarlo?</summary><p>Está pensado para textiles y superficies donde se acumula pelo, como sofás, ropa, mantas, alfombras y asientos del coche.</p></details>
+      <details><summary>¿Necesita recambios?</summary><p>No. Es reutilizable: retira el pelo acumulado y vuelve a usarlo.</p></details>
+      <details><summary>¿Hay varios packs?</summary><p>Sí. Puedes elegir entre 1, 2 o 3 unidades.</p></details>
+      <details><summary>¿Recibiré seguimiento del envío?</summary><p>Cuando el proveedor genere el número de seguimiento, se sincronizará con Shopify para que puedas recibir la información del envío.</p></details>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inicio Zunapet",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Producto destacado"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inicio Zunapet"
+    }
+  ]
+}
+{% endschema %}
