@@ -95,8 +95,19 @@ button,input,select,textarea{font:inherit}
 .zp-card-body{padding:18px}
 .zp-card-title{font-weight:800;margin-bottom:6px}
 .zp-product-page{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:start}
-.zp-product-gallery{display:grid;gap:14px}
-.zp-product-gallery img{width:100%;border-radius:20px;background:var(--zp-cream)}
+.zp-product-gallery{display:grid;gap:18px}
+.zp-product-gallery img{
+  width:100%;
+  aspect-ratio:1/1;
+  height:auto;
+  max-height:620px;
+  object-fit:contain;
+  object-position:center;
+  padding:18px;
+  border-radius:22px;
+  background:var(--zp-cream);
+  border:1px solid var(--zp-line);
+}
 .zp-product-sticky{position:sticky;top:120px}
 .zp-rte{color:var(--zp-muted)}
 .zp-rte h2,.zp-rte h3{color:var(--zp-text)}
@@ -122,7 +133,10 @@ button,input,select,textarea{font:inherit}
   .zp-footer{grid-template-columns:1fr;gap:30px}
   .zp-grid{grid-template-columns:repeat(2,1fr)}
   .zp-product-sticky{position:static}
+  .zp-product-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .zp-product-gallery img{max-height:none;padding:12px;border-radius:16px}
 }
+
 @media(max-width:600px){
   .zp-announcement{font-size:11px}
   .zp-actions{font-size:12px}
@@ -133,6 +147,26 @@ button,input,select,textarea{font:inherit}
   .zp-trust-grid{border-radius:0;border-left:0;border-right:0}
   .zp-product-media{min-height:320px;padding:18px}
   .zp-grid{grid-template-columns:1fr}
+  .zp-product-page{gap:28px}
+  .zp-product-gallery{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    gap:10px;
+    margin-inline:-18px;
+    padding:0 18px 10px;
+    scrollbar-width:none;
+  }
+  .zp-product-gallery::-webkit-scrollbar{display:none}
+  .zp-product-gallery img{
+    flex:0 0 88%;
+    width:88%;
+    aspect-ratio:1/1;
+    object-fit:contain;
+    padding:12px;
+    scroll-snap-align:center;
+    border-radius:16px;
+  }
   .zp-cart-table thead{display:none}
   .zp-cart-table tr{display:grid;padding:14px 0}
   .zp-cart-table td{border:0;padding:5px 0}
