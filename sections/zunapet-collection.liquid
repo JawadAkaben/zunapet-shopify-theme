@@ -1,0 +1,19 @@
+<section class="zp-page">
+  <div class="zp-wrap">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}<div class="zp-rte">{{ collection.description }}</div>{% endif %}
+    <div class="zp-grid">
+      {% for product in collection.products %}
+        <a class="zp-card" href="{{ product.url }}">
+          <div class="zp-card-media">{% if product.featured_image %}{{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: product.title }}{% endif %}</div>
+          <div class="zp-card-body"><div class="zp-card-title">{{ product.title }}</div><div>{{ product.price_min | money }}</div></div>
+        </a>
+      {% else %}
+        <div class="zp-empty">Todavía no hay productos publicados en esta colección.</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Colección Zunapet","settings":[]}
+{% endschema %}
