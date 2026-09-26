@@ -1,0 +1,43 @@
+<section class="zp-page">
+  <div class="zp-wrap zp-product-page">
+    <div class="zp-product-gallery">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+          {{ media | image_url: width: 1100 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="zp-product-sticky">
+      <span class="zp-eyebrow">Zunapet</span>
+      <h1>{{ product.title }}</h1>
+      <div class="zp-price-row">
+        <span class="zp-price">{{ product.price_min | money }}</span>
+        {% if product.price_varies %}<span class="zp-mini">a {{ product.price_max | money }}</span>{% endif %}
+      </div>
+      <ul class="zp-list">
+        <li>Reutilizable y sin recambios.</li>
+        <li>Para sofás, ropa, alfombras y coche.</li>
+        <li>Sin batería y fácil de guardar.</li>
+      </ul>
+      {% form 'product', product, class: 'zp-buybox' %}
+        <label for="ProductVariant">Elige tu pack</label>
+        <select id="ProductVariant" name="id" class="zp-select">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} · Agotado{% endunless %}
+            </option>
+          {% endfor %}
+        </select>
+        <label for="Quantity">Cantidad</label>
+        <input id="Quantity" class="zp-qty" type="number" name="quantity" min="1" value="1">
+        <button class="zp-btn" type="submit" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Añadir al carrito{% else %}Agotado{% endif %}
+        </button>
+      {% endform %}
+      <div class="zp-rte">{{ product.description }}</div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Producto Zunapet","settings":[]}
+{% endschema %}
