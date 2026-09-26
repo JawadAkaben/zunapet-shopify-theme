@@ -1,0 +1,24 @@
+<section class="zp-page">
+  <div class="zp-wrap">
+    <h1>Buscar</h1>
+    <form class="zp-search-form" action="{{ routes.search_url }}" method="get">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="¿Qué estás buscando?">
+      <button class="zp-btn" type="submit">Buscar</button>
+    </form>
+    {% if search.performed %}
+      <div class="zp-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            <a class="zp-card" href="{{ item.url }}">
+              <div class="zp-card-media">{% if item.featured_image %}{{ item.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: item.title }}{% endif %}</div>
+              <div class="zp-card-body"><div class="zp-card-title">{{ item.title }}</div><div>{{ item.price | money }}</div></div>
+            </a>
+          {% endif %}
+        {% else %}
+          <p>No hemos encontrado resultados.</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}{"name":"Buscar Zunapet","settings":[]}{% endschema %}
